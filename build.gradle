@@ -1,0 +1,46 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+archivesBaseName = 'chicagocrime'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  mavenRepo name: 'conjars', url: 'http://conjars.org/repo/'
+}
+
+dependencies {
+  compile( 'cascading:cascading-core:2.2.0-wip-41' ) {  }
+  compile( 'cascading:cascading-hadoop:2.2.0-wip-41' ) { transitive = false } 
+  
+  compile group: 'org.slf4j', name: 'slf4j-api', version: '1.6.1'
+  runtime group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.6.1'
+  runtime group: 'log4j', name: 'log4j', version: '1.2.16'
+}
+
+jar {
+  description = "Assembles a Hadoop ready jar file"
+  doFirst {
+    into( 'lib' ) {
+      from configurations.compile
+    }
+  }
+
+  manifest {
+    attributes( "Main-Class": "chicagocrime/Main" )
+  }
+}
+
+task distCopy( type: Copy, dependsOn: jar ) {
+  into "${buildDir}/dist/${archivesBaseName}"
+
+  from 'README.md'
+  from 'build.gradle'
+  from( 'src' ) {into 'src'}
+  from( 'data' ) {into 'data'}
+
+  from "$buildDir/libs"
+}
+
