@@ -1,0 +1,69 @@
+DISTRICT,ADDRESS,CITY,STATE,ZIP,WEBSITE,PHONE,FAX,TTY,LOCATION
+Headquarters,3510 S Michigan Ave,Chicago,IL,60653,https://portal.chicagopolice.org/portal/page/portal/ClearPath,,,,"3510 S Michigan Ave Chicago, IL 60653 (41.83086072588734, -87.62330200626332)
+"
+1,1718 S State St,Chicago,IL,60616,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District1,312-745-4290,312-745-3694,312-745-3693,"1718 State St
+Chicago, IL 60616
+(41.85882087432612, -87.62734256712464)"
+2,5101 S Wentworth Ave,Chicago,IL,60609,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District2,312-747-8366,312-747-5396,312-747-6656,"5101 Wentworth Ave
+Chicago, IL 60609
+(41.8017738753714, -87.630663656445)"
+3,7040 S Cottage Grove Ave,Chicago,IL,60637,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District3,312-747-8201,312-747-5479,312-747-9168,"7040 Cottage Grove Ave
+Chicago, IL 60637
+(41.76697112291843, -87.6056617928308)"
+4,2255 E 103rd St,Chicago,IL,60617,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District4,312-747-7581,312-747-5276,312-747-9169,"2255 103rd St
+Chicago, IL 60617
+(41.70778489172678, -87.56718279470178)"
+5,727 E 111th St,Chicago,IL,60628,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District5,312-747-8210,312-747-5935,312-747-9170,"727 111th St
+Chicago, IL 60628
+(41.69279473591493, -87.60536435875626)"
+6,7808 S Halsted St,Chicago,IL,60620,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District6,312-745-3617,312-745-3649,312-745-3639,"7808 Halsted St
+Chicago, IL 60620
+(41.7522817574851, -87.64414141672431)"
+7,1438 W 63rd St,Chicago,IL,60636,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District7,312-747-8223,312-747-6558,312-747-6652,"1438 63rd St
+Chicago, IL 60636
+(41.77965870830844, -87.65945323490796)"
+8,3420 W 63rd St,Chicago,IL,60629,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District8,312-747-8730,312-747-8545,312-747-8116,"3420 63rd St
+Chicago, IL 60629
+(41.77899321000677, -87.70878104821506)"
+9,3120 S Halsted St,Chicago,IL,60608,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District9,312-747-8227,312-747-5329,312-747-9172,"3120 Halsted St
+Chicago, IL 60608
+(41.83750310123302, -87.64661990954984)"
+10,3315 W Ogden Ave,Chicago,IL,60623,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District10,312-747-7511,312-747-7429,312-747-7471,"3315 Ogden Ave
+Chicago, IL 60623
+(41.85636188418744, -87.70840333296276)"
+11,3151 W Harrison St,Chicago,IL,60612,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District11,312-746-8386,312-746-4281,312-746-5151,"3151 Harrison St
+Chicago, IL 60612
+(41.873690811457, -87.70519897133927)"
+12,100 S Racine Ave,Chicago,IL,60607,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District12,312-746-8309,312-746-4248,312-746-9868,"100 Racine Ave
+Chicago, IL 60607
+(41.88031148430877, -87.65715796324291)"
+14,2150 N California Ave,Chicago,IL,60647,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District14,312-744-8250,312-744-2422,312-744-8260,"2150 California Ave
+Chicago, IL 60647
+(41.92125066466082, -87.69732502896069)"
+15,5701 W Madison St,Chicago,IL,60644,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District15,312-743-1440,312-743-1366,312-743-1485,"5701 Madison St
+Chicago, IL 60644
+(41.87978022983041, -87.76818126825033)"
+16,5151 N Milwaukee Ave,Chicago,IL,60630,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District16,312-742-4480,312-742-4421,312-742-4423,"5151 Milwaukee Ave
+Chicago, IL 60630
+(41.974188798165315, -87.76623800785116)"
+17,4650 N Pulaski Rd,Chicago,IL,60630,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District17,312-742-4410,312-742-5411,312-742-5451,"4650 Pulaski Rd
+Chicago, IL 60630
+(41.966052192101166, -87.72816143794648)"
+18,1160 N Larrabee St,Chicago,IL,60610,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District18,312-742-5870,312-742-5771,312-742-5773,"1160 Larrabee St
+Chicago, IL 60610
+(41.90311763649074, -87.64353523498934)"
+19,850 W Addison St,Chicago,IL,60613,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District23,312-744-8320,312-744-4481,312-744-8011,"3600 Halsted St
+Chicago, IL 60613
+(41.94665927496925, -87.64947786133158)"
+20,5400 N Lincoln Ave,Chicago,IL,60625,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District20,312-742-8714,312-742-8803,312-742-8841,"5400 Lincoln Ave
+Chicago, IL 60625
+(41.97954202254066, -87.69301593304144)"
+22,1900 W Monterey Ave,Chicago,IL,60643,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District22,312-745-0710,312-745-0814,312-745-0569,"1900 Monterey Ave
+Chicago, IL 60643
+(41.691350048962875, -87.66855780581959)"
+24,6464 N Clark St,Chicago,IL,60626,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District24,312-744-5907,312-744-6928,312-744-7603,"6464 Clark St
+Chicago, IL 60626
+(41.99944797184307, -87.67118638353655)"
+25,5555 W Grand Ave,Chicago,IL,60639,https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts/District25,312-746-8605,312-746-4353,312-746-8383,"5555 Grand Ave
+Chicago, IL 60639
+(41.91848587824693, -87.76465420759772)"
