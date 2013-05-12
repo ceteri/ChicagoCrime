@@ -6,7 +6,10 @@ import cascading.flow.Flow;
 import cascading.flow.FlowDef;
 import cascading.flow.hadoop.HadoopFlowConnector;
 import cascading.operation.Aggregator;
+import cascading.operation.AssertionLevel;
 import cascading.operation.aggregator.Count;
+import cascading.operation.assertion.AssertNotNull;
+import cascading.operation.regex.RegexReplace;
 import cascading.pipe.*;
 
 import cascading.pipe.assembly.Coerce;
@@ -55,11 +58,19 @@ public class
 
 
 
+
     // pipe
     Pipe pipe = new Pipe( "Test" );
     Pipe censusPipe = new Pipe("Census");
     censusPipe = new Discard(censusPipe,new Fields("COMMUNITY AREA NAME"));
     censusPipe = new Coerce(censusPipe, new Fields("COMMUNITY AREA"), Integer.class);
+    RegexReplace regexReplace = new RegexReplace(new Fields("PER_CAPITA_INCOME_FORMATED"),"\\$","", true);
+    censusPipe = new Each(censusPipe,new Fields("PER_CAPITA_INCOME"),regexReplace,Fields.ALL);
+
+    AssertNotNull notNull = new AssertNotNull();
+    pipe = new Each( pipe,new Fields("community_area"), AssertionLevel.STRICT, notNull );
+
+
 
     Pipe langPipe = new Pipe("Lang");
     langPipe = new Coerce(langPipe,new Fields("Community Area"), Integer.class);
@@ -70,18 +81,13 @@ public class
 
     pipe = new Each(pipe,new DateExtract(new Fields("Date"),new Fields("month","hour","week")),Fields.ALL);
 
-
-
-
     pipe = new GroupBy( pipe, new Fields( "crime_id", "community_area","month","hour","week","Year") );
-
-
     Aggregator count = new Count( new Fields( "Count" ) );
     pipe = new Every( pipe, count );
     pipe = new Coerce(pipe,String.class, Integer.class,Integer.class,Integer.class,Integer.class,Integer.class,Integer.class);
     Pipe merged = new Merge("Merged",pipe, genPipe);
     merged = new SumBy( merged,new Fields( "crime_id", "community_area","month","hour","week","Year"), new Fields("Count"),
-                  new Fields("Total") , Double.class );
+      new Fields("Total") , Double.class );
 
     Pipe joinedPipe = new HashJoin(merged,new Fields("community_area"),censusPipe, new Fields("COMMUNITY AREA"), new LeftJoin());
 
