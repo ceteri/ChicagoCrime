@@ -36,19 +36,23 @@ crime_id = ["ARSON"
 ,"THEFT"
 ,"WEAPONS VIOLATION"]
 
-wards = range(1,51)
+wards = range(1,78)
 hours = range(0,24)
 month = range(0,12)
+year = range(2001,2013)
+weeks = range(1,8)
 
 
 if __name__ == "__main__":
     out_file = sys.argv[1]
     f = open(out_file,"w")
-    f.write("crime_id,ward,month,hour,Count\n")
+    f.write("crime_id,community_area,month,hour,Year,Count\n")
     for i in crime_id:
         for j in wards:
             for k in hours:
                 for l in month:
-                    f.write(str(i)+","+str(j)+","+str(l)+","+str(k)+",0"+"\n")
+                    for y in year:
+                       for w in weeks:
+                           f.write(str(i)+","+str(j)+","+str(l)+","+str(k)+","+str(w)+","+str(y)+",0"+"\n")
 
     f.close()
