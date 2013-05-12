@@ -71,6 +71,11 @@ public class
     pipe = new Each(pipe,new DateExtract(new Fields("Date"),new Fields("month","hour","week")),Fields.ALL);
 
 
+
+
+    pipe = new GroupBy( pipe, new Fields( "crime_id", "community_area","month","hour","week","Year") );
+
+
     Aggregator count = new Count( new Fields( "Count" ) );
     pipe = new Every( pipe, count );
     pipe = new Coerce(pipe,String.class, Integer.class,Integer.class,Integer.class,Integer.class,Integer.class,Integer.class);

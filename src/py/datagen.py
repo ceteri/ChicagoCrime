@@ -46,7 +46,7 @@ weeks = range(1,8)
 if __name__ == "__main__":
     out_file = sys.argv[1]
     f = open(out_file,"w")
-    f.write("crime_id,community_area,month,hour,Year,Count\n")
+    f.write("crime_id,community_area,month,hour,week,Year,Count\n")
     for i in crime_id:
         for j in wards:
             for k in hours:
