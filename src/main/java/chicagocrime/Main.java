@@ -28,13 +28,11 @@ public class
   public static void
   main( String[] args )
   {
-
-
     Properties properties = new Properties();
     AppProps.setApplicationJarClass( properties, Main.class );
     HadoopFlowConnector flowConnector = new HadoopFlowConnector( properties );
 
-    // source tap
+    // source taps
 
     Fields inFields = new Fields("ID","Case Number","Date","Block","IUCR","crime_id","Description","Location Description","Arrest","Domestic","Beat","District","ward","community_area","FBI Code","X Coordinate","Y Coordinate","Year","Updated On","Latitude","Longitude","Location");
     Fields dataField = new Fields( "crime_id", "community_area","month","hour","week","Year","Count");
@@ -43,24 +41,17 @@ public class
     Fields languageFields = new Fields("Community Area","Community Area Name","PREDOMINANT NON-ENGLISH LANGUAGE (%)","AFRICAN_LANGUAGES","ARABIC","ARMENIAN","CAMBODIAN_MON_KHMER","CHINESE","CREOLE","FRENCH","GERMAN","GREEK","GUJARATI","HEBREW","HINDI","HMONG","HUNGARIAN","ITALIAN","JAPANESE","KOREAN","LAOTIAN","NAVAJO","OTHER_ASIAN","OTHER_INDIC","OTHER_INDO_EURPOEAN","OTHER_NATIVE_NORTH_AMERICAN","OTHER_PACIFIC_ISLAND","OTHER_SLAVIC","OTHER_WEST_GERMANIC","PERSIAN","POLISH","PORTUGUESE","RUSSIAN","SCANDINAVIAN","SERBO-CROATIAN","SPANISH","TAGALOG","THAI","UNSPECIFIED","URDU","VIETNAMESE","YIDDISH");
 
     Tap inTap = new Hfs( new TextDelimited( inFields,true, ",", "\"" ), "data/crimes.csv" );
-    Tap inTap2= new Hfs( new TextDelimited( dataField,true, ",", "\"" ), "data/cube_defaults.csv" );
-    Tap cenTap = new Hfs( new TextDelimited( censusFields,true, ",", "\"" ), "data/census.csv" );
+    Tap genTap = new Hfs( new TextDelimited( dataField,true, ",", "\"" ), "data/cube_defaults.csv" );
+    Tap censusTap = new Hfs( new TextDelimited( censusFields,true, ",", "\"" ), "data/census.csv" );
     Tap langTap = new Hfs( new TextDelimited( languageFields,true, ",", "\"" ), "data/language.csv" );
 
-
     Tap outTap = new Hfs(new TextDelimited(Fields.ALL,true,true,","), "RawCrimeData");
-
     Tap trap = new Hfs(new TextDelimited( Fields.ALL,false,true,","), "TrappedData");
 
 
 
-
-
-
-
-
-
     // pipe
+
     Pipe pipe = new Pipe( "Test" );
     Pipe censusPipe = new Pipe("Census");
     censusPipe = new Discard(censusPipe,new Fields("COMMUNITY AREA NAME"));
@@ -94,7 +85,7 @@ public class
 
     merged = new GroupBy(merged,new Fields( "crime_id", "community_area","month","hour","week") );
 
-    merged = new  Every(merged, new ExponentialDecay(new Fields( "crime_id", "community_area","month","hour","week","Year","Total","YearExp1","YearExp2")), Fields.RESULTS);
+    merged = new  Every(merged, new ExponentialDecay(new Fields( "crime_id", "community_area","month","hour","week","Year","Total","YearExp","YearExp2")), Fields.RESULTS);
 
     Pipe joinedPipe = new HashJoin(merged,new Fields("community_area"),censusPipe, new Fields("COMMUNITY AREA"), new LeftJoin());
 
@@ -104,13 +95,11 @@ public class
 
 
 
-
-
     FlowDef flowDef = FlowDef.flowDef()
-      .addSource( pipe, inTap )
-      .addSource(censusPipe, cenTap)
-      .addSource(langPipe,langTap)
-      .addSource(genPipe,inTap2)
+      .addSource(pipe, inTap)
+      .addSource(censusPipe, censusTap)
+      .addSource(langPipe, langTap)
+      .addSource(genPipe, genTap)
       .addTrap(censusPipe, trap)
       .addTrap(langPipe, trap)
       .addTrap(pipe, trap)
@@ -118,11 +107,10 @@ public class
       .addTrap(merged,trap)
       .addTailSink(joinedPipe2, outTap);
 
+    // flow planner
 
-    //flow
     Flow f = flowConnector.connect(flowDef);
     f.writeDOT("docs/flow.dot");
     f.complete();
-
   }
 }

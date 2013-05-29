@@ -1,3 +1,6 @@
+build
+docs/flow.dot
+.gradle
 *~
 
 # History files
