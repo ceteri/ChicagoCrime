@@ -1,7 +1,5 @@
 package chicagocrime;
 
-import java.util.Properties;
-
 import cascading.flow.Flow;
 import cascading.flow.FlowDef;
 import cascading.flow.hadoop.HadoopFlowConnector;
@@ -11,7 +9,6 @@ import cascading.operation.aggregator.Count;
 import cascading.operation.assertion.AssertNotNull;
 import cascading.operation.regex.RegexReplace;
 import cascading.pipe.*;
-
 import cascading.pipe.assembly.Coerce;
 import cascading.pipe.assembly.Discard;
 import cascading.pipe.assembly.SumBy;
@@ -21,6 +18,8 @@ import cascading.scheme.hadoop.TextDelimited;
 import cascading.tap.Tap;
 import cascading.tap.hadoop.Hfs;
 import cascading.tuple.Fields;
+
+import java.util.Properties;
 
 
 public class
@@ -59,6 +58,8 @@ public class
 
 
 
+
+
     // pipe
     Pipe pipe = new Pipe( "Test" );
     Pipe censusPipe = new Pipe("Census");
@@ -74,6 +75,8 @@ public class
 
     Pipe langPipe = new Pipe("Lang");
     langPipe = new Coerce(langPipe,new Fields("Community Area"), Integer.class);
+    langPipe = new Discard(langPipe, new Fields("PREDOMINANT NON-ENGLISH LANGUAGE (%)","Community Area Name"));
+
 
 
     Pipe genPipe = new Pipe( "Gen" );
@@ -89,9 +92,14 @@ public class
     merged = new SumBy( merged,new Fields( "crime_id", "community_area","month","hour","week","Year"), new Fields("Count"),
       new Fields("Total") , Double.class );
 
+    merged = new GroupBy(merged,new Fields( "crime_id", "community_area","month","hour","week") );
+
+    merged = new  Every(merged, new ExponentialDecay(new Fields( "crime_id", "community_area","month","hour","week","Year","Total","YearExp1","YearExp2")), Fields.RESULTS);
+
     Pipe joinedPipe = new HashJoin(merged,new Fields("community_area"),censusPipe, new Fields("COMMUNITY AREA"), new LeftJoin());
 
     Pipe joinedPipe2 = new HashJoin(joinedPipe,new Fields("community_area"),langPipe, new Fields("Community Area"), new LeftJoin());
+
 
 
 
